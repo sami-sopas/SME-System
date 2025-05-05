@@ -1,13 +1,18 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+import os
+from tkinter import StringVar, messagebox
 from interfaces.step_two_requirements import show_step_two
 
+#Pantalla de primera fase
 def show_step_one():
-    fase1 = tk.Tk()
+    fase1 = ctk.CTk()
     fase1.title("Fase 1 - Tipo de uso")
-    fase1.geometry("500x400")
+    fase1.geometry("750x400")
     fase1.resizable(False, False)
 
-    tk.Label(fase1, text="¿Para qué usarás la computadora?", font=("Arial", 16, "bold")).pack(pady=20)
+    #Título y opciones de la ventana
+    ctk.CTkLabel(fase1, text="¿Para qué usarás la computadora?", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=20)
 
     opciones = [
         "Oficina / tareas generales",
@@ -18,10 +23,11 @@ def show_step_one():
         "Ingenieria / CAD / simulacion"
     ]
 
-    seleccion = tk.StringVar(value="")
+    #Variable de selección de opciones
+    seleccion = StringVar(value="")
 
     for i, opcion in enumerate(opciones):
-        tk.Radiobutton(
+        ctk.CTkRadioButton(
             fase1,
             text=opcion,
             variable=seleccion,
@@ -29,6 +35,7 @@ def show_step_one():
             font=("Arial", 12)
         ).pack(anchor="w", padx=50)
 
+    #Función para manejar la l+ogica del botón de siguiente
     def siguiente():
         if seleccion.get():
             uso = seleccion.get()
@@ -36,8 +43,27 @@ def show_step_one():
             fase1.destroy()
             show_step_two(uso)
         else:
-            tk.messagebox.showwarning("Atención", "Debes seleccionar una opción")
+            messagebox.showwarning("Atención", "Debes seleccionar una opción")
 
-    tk.Button(fase1, text="Siguiente", font=("Arial", 12), bg="blue", fg="white", command=siguiente).pack(pady=30)
+    #Imagen perrona para el botón
+    image_path = os.path.join("assets", "yanpol.png")
+    image = Image.open(image_path)
+
+    #Botón de siguiente
+    ctk.CTkButton(
+        master=fase1,
+        text="Siguiente",
+        font=ctk.CTkFont(size=14, weight="bold"),
+        fg_color="transparent",
+        bg_color="transparent",
+        border_color="mediumblue",
+        hover_color="mediumblue",
+        border_width=2,
+        text_color="white",
+        corner_radius=10,
+        width=200,
+        image=ctk.CTkImage(light_image=image),
+        command=siguiente
+    ).pack(pady=30)
 
     fase1.mainloop()
