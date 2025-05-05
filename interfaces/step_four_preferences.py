@@ -22,7 +22,10 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
         button_color='darkorange',
         button_hover_color='orange',
         dropdown_hover_color='orange',
-        width=200).pack(anchor="w", padx=30)
+        text_color="white",
+        dropdown_text_color='white',
+        width=200
+        ).pack(anchor="w", padx=30)
 
     portatil = BooleanVar()
     buena_bateria = BooleanVar()
