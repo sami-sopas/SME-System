@@ -5,14 +5,13 @@ from tkinter import StringVar, messagebox
 from interfaces.step_two_requirements import show_step_two
 
 #Pantalla de primera fase
-def show_step_one():
-    fase1 = ctk.CTk()
-    fase1.title("Fase 1 - Tipo de uso")
-    fase1.geometry("750x400")
-    fase1.resizable(False, False)
+def show_step_one(root):
+    #Esto es para eliminar la ventana anterior
+    for widget in root.winfo_children():
+        widget.destroy()
 
     #Título y opciones de la ventana
-    ctk.CTkLabel(fase1, text="¿Para qué usarás la computadora?", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=20)
+    ctk.CTkLabel(root, text="¿Para qué usarás la computadora?", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=20)
 
     opciones = [
         "Oficina / tareas generales",
@@ -28,7 +27,7 @@ def show_step_one():
 
     for i, opcion in enumerate(opciones):
         ctk.CTkRadioButton(
-            fase1,
+            root,
             text=opcion,
             variable=seleccion,
             value=opcion,
@@ -40,8 +39,7 @@ def show_step_one():
         if seleccion.get():
             uso = seleccion.get()
             print(uso)
-            fase1.destroy()
-            show_step_two(uso)
+            show_step_two(root, uso)
         else:
             messagebox.showwarning("Atención", "Debes seleccionar una opción")
 
@@ -51,7 +49,7 @@ def show_step_one():
 
     #Botón de siguiente
     ctk.CTkButton(
-        master=fase1,
+        master=root,
         text="Siguiente",
         font=ctk.CTkFont(size=14, weight="bold"),
         fg_color="transparent",
@@ -65,5 +63,3 @@ def show_step_one():
         image=ctk.CTkImage(light_image=image),
         command=siguiente
     ).pack(pady=30)
-
-    fase1.mainloop()
