@@ -1,25 +1,31 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+import os
+from tkinter import StringVar, BooleanVar
 from interfaces.recomendation import show_final_recommendation
 
-def show_step_four(tipo_uso, requerimientos, presupuesto):
-    fase4 = tk.Tk()
-    fase4.title("Fase 4 - Preferencias adicionales")
-    fase4.geometry("500x500")
-    fase4.resizable(False, False)
+def show_step_four(root, tipo_uso, requerimientos, presupuesto):
+    #Esto es para eliminar la ventana anterior
+    for widget in root.winfo_children():
+        widget.destroy()
 
-    tk.Label(fase4, text="Preferencias adicionales", font=("Arial", 16, "bold")).pack(pady=10)
-    tk.Label(fase4, text=f"Uso: {tipo_uso} | Presupuesto: {presupuesto}", font=("Arial", 10, "italic")).pack(pady=5)
+    ctk.CTkLabel(root, text="Preferencias adicionales", font=("Arial", 16, "bold")).pack(pady=10)
+    ctk.CTkLabel(root, text=f"Uso: {tipo_uso} | Presupuesto: {presupuesto}", font=("Arial", 10, "italic")).pack(pady=5)
 
-    marca_preferida = tk.StringVar(value="Ninguna")
+    marca_preferida = StringVar(value="Ninguna")
     marcas = ["Ninguna", "HP", "Dell", "Lenovo", "Apple", "Asus", "Acer"]
-    tk.Label(fase4, text="Marca preferida:", font=("Arial", 12)).pack(anchor="w", padx=30, pady=(15, 0))
-    tk.OptionMenu(fase4, marca_preferida, *marcas).pack(anchor="w", padx=30)
+    ctk.CTkLabel(root, text="Marca preferida:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
+    ctk.CTkOptionMenu(
+        root, variable=marca_preferida, values=marcas, 
+        fg_color='slategray',
+        dropdown_fg_color='lightslategray',
+        width=200).pack(anchor="w", padx=30)
 
-    portatil = tk.BooleanVar()
-    buena_bateria = tk.BooleanVar()
+    portatil = BooleanVar()
+    buena_bateria = BooleanVar()
 
-    tk.Checkbutton(fase4, text="Debe ser liviana / portátil", variable=portatil, font=("Arial", 12)).pack(anchor="w", padx=30, pady=5)
-    tk.Checkbutton(fase4, text="Buena duración de batería", variable=buena_bateria, font=("Arial", 12)).pack(anchor="w", padx=30, pady=5)
+    ctk.CTkCheckBox(root, text="Debe ser liviana / portátil", variable=portatil, font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=5)
+    ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=5)
 
     def finalizar():
         # Combinar todos los datos en un diccionario final
@@ -35,9 +41,25 @@ def show_step_four(tipo_uso, requerimientos, presupuesto):
         if "gpu" in requerimientos:
             datos_finales["gpu"] = requerimientos["gpu"]
 
-        fase4.destroy()
-        show_final_recommendation(datos_finales)
+        show_final_recommendation(root, datos_finales)
 
-    tk.Button(fase4, text="Finalizar", font=("Arial", 12), bg="green", fg="white", command=finalizar).pack(pady=30)
+    #Imagen perrona para el botón
+    image_path = os.path.join("assets", "yanpol.png")
+    image = Image.open(image_path)
 
-    fase4.mainloop()
+    #Botón para finlizar
+    ctk.CTkButton(
+        master=root,
+        text="Finalizar",
+        font=ctk.CTkFont(size=14, weight="bold"),
+        fg_color="transparent",
+        bg_color="transparent",
+        border_color="mediumblue",
+        hover_color="mediumblue",
+        border_width=2,
+        text_color="white",
+        corner_radius=10,
+        width=200,
+        image=ctk.CTkImage(light_image=image),
+        command=finalizar
+    ).pack(pady=30)

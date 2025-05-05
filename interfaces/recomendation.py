@@ -1,7 +1,9 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+import os
 from pyswip import Prolog
 
-def show_final_recommendation(datos):
+def show_final_recommendation(root, datos):
 
     print("Datos a prolog")
     print(datos)
@@ -33,14 +35,29 @@ def show_final_recommendation(datos):
     recomendacion = resultados[0]["Recomendacion"] if resultados else "No se encontró una recomendación adecuada."
 
     # Mostrar en ventana
-    final = tk.Tk()
-    final.title("Recomendación final")
-    final.geometry("600x300")
-    final.resizable(False, False)
+    for widget in root.winfo_children():
+        widget.destroy()
 
-    tk.Label(final, text="✅ Recomendación Final", font=("Arial", 18, "bold")).pack(pady=20)
-    tk.Label(final, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
+    ctk.CTkLabel(root, text="✅ Recomendación Final", font=("Arial", 18, "bold")).pack(pady=20)
+    ctk.CTkLabel(root, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
 
-    tk.Button(final, text="Cerrar", font=("Arial", 12), command=final.destroy).pack(pady=20)
+    #Imagen perrona para el botón
+    image_path = os.path.join("assets", "yanpol.png")
+    image = Image.open(image_path)
 
-    final.mainloop()
+    #Botón para cerrar la ventana
+    ctk.CTkButton(
+        master=root,
+        text="Cerrar",
+        font=ctk.CTkFont(size=14, weight="bold"),
+        fg_color="transparent",
+        bg_color="transparent",
+        border_color="mediumblue",
+        hover_color="mediumblue",
+        border_width=2,
+        text_color="white",
+        corner_radius=10,
+        width=200,
+        image=ctk.CTkImage(light_image=image),
+        command=root.destroy
+    ).pack(pady=30)
