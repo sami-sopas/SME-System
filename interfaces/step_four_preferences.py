@@ -17,15 +17,18 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     ctk.CTkLabel(root, text="Marca preferida:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
     ctk.CTkOptionMenu(
         root, variable=marca_preferida, values=marcas, 
-        fg_color='slategray',
-        dropdown_fg_color='lightslategray',
+        fg_color='darkorange3',
+        dropdown_fg_color='darkorange4',
+        button_color='darkorange',
+        button_hover_color='orange',
+        dropdown_hover_color='orange',
         width=200).pack(anchor="w", padx=30)
 
     portatil = BooleanVar()
     buena_bateria = BooleanVar()
 
-    ctk.CTkCheckBox(root, text="Debe ser liviana / portátil", variable=portatil, font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=5)
-    ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=5)
+    ctk.CTkCheckBox(root, text="Debe ser liviana / portátil", variable=portatil, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
+    ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
 
     def finalizar():
         # Combinar todos los datos en un diccionario final
@@ -52,12 +55,12 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
         master=root,
         text="Finalizar",
         font=ctk.CTkFont(size=14, weight="bold"),
-        fg_color="transparent",
+        fg_color="orange",
         bg_color="transparent",
-        border_color="mediumblue",
-        hover_color="mediumblue",
+        border_color="black",
+        hover_color="darkorange",
         border_width=2,
-        text_color="white",
+        text_color="black",
         corner_radius=10,
         width=200,
         image=ctk.CTkImage(light_image=image),

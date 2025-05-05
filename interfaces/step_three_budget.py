@@ -27,7 +27,9 @@ def show_step_three(root, tipo_uso, requerimientos):
             text=rango,
             variable=seleccion,
             value=rango,
-            font=("Arial", 12)
+            font=("Arial", 12),
+            fg_color="darkorange",
+            hover_color="orange"
         ).pack(anchor="w", padx=50)
 
     def siguiente():
@@ -47,12 +49,12 @@ def show_step_three(root, tipo_uso, requerimientos):
         master=root,
         text="Siguiente",
         font=ctk.CTkFont(size=14, weight="bold"),
-        fg_color="transparent",
+        fg_color="orange",
         bg_color="transparent",
-        border_color="mediumblue",
-        hover_color="mediumblue",
+        border_color="black",
+        hover_color="darkorange",
         border_width=2,
-        text_color="white",
+        text_color="black",
         corner_radius=10,
         width=200,
         image=ctk.CTkImage(light_image=image),

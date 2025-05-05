@@ -4,8 +4,7 @@ import os
 from interfaces.step_one_usage import show_step_one
 
 # Configuración de la apariencia de la ventana
-ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("blue")
+ctk.set_appearance_mode("light")
 
 #Pantalla de bienvenida
 def show_welcome():
@@ -28,7 +27,7 @@ def show_welcome():
             widget.destroy()
 
         #Titulo y subtitulo de la ventana
-        ctk.CTkLabel(root, text="SME System", font=ctk.CTkFont(size=24, weight="bold"), text_color="mediumblue").pack(pady=10)
+        ctk.CTkLabel(root, text="SME System", font=ctk.CTkFont(size=24, weight="bold"), text_color="black").pack(pady=10)
         ctk.CTkLabel(root, text="Sistema inteligente de recomendación de computadoras", font=ctk.CTkFont(size=18)).pack (pady=5)
 
         #Imagen perrona de la ventana
@@ -43,12 +42,12 @@ def show_welcome():
             master= root,
             text="Iniciar",
             font=ctk.CTkFont(size=14, weight="bold"),
-            fg_color="transparent",
+            fg_color="orange",
             bg_color="transparent",
-            border_color="mediumblue",
-            hover_color="mediumblue",
+            border_color="black",
+            hover_color="darkorange",
             border_width=2,
-            text_color="white",
+            text_color="black",
             corner_radius=10,
             width=200,
             image=ctk.CTkImage(light_image=image),
