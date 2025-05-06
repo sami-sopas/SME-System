@@ -12,11 +12,11 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     ctk.CTkLabel(root, text="Preferencias adicionales", font=("Arial", 16, "bold")).pack(pady=10)
     ctk.CTkLabel(root, text=f"Uso: {tipo_uso} | Presupuesto: {presupuesto}", font=("Arial", 10, "italic")).pack(pady=5)
 
-    marca_preferida = StringVar(value="Ninguna")
-    marcas = ["Ninguna", "HP", "Dell", "Lenovo", "Apple", "Asus", "Acer"]
-    ctk.CTkLabel(root, text="Marca preferida:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
+    sistema_preferida = StringVar(value="Windows")
+    sistema = ["Windows", "MacOS"]
+    ctk.CTkLabel(root, text="Sistema Operativo preferido:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
     ctk.CTkOptionMenu(
-        root, variable=marca_preferida, values=marcas, 
+        root, variable=sistema_preferida, values=sistema, 
         fg_color='darkorange3',
         dropdown_fg_color='darkorange4',
         button_color='darkorange',
@@ -38,7 +38,7 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
         datos_finales = {
             "tipo_uso": tipo_uso,
             "presupuesto": presupuesto,
-            "marca": marca_preferida.get(),
+            "sistema": sistema_preferida.get(),
             "portatil": portatil.get(),
             "bateria": buena_bateria.get(),
         }

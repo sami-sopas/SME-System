@@ -13,10 +13,10 @@ def show_step_three(root, tipo_uso, requerimientos):
     ctk.CTkLabel(root, text="¿Cuál es tu presupuesto aproximado?", font=("Arial", 16, "bold")).pack(pady=20)
 
     rangos = [
-        "Menos de $500",
-        "$500 - $800",
-        "$800 - $1200",
-        "Mas de $1200"
+        "Menos de $10,000",
+        "$10,000 - $16,000",
+        "$16,000 - $22,000",
+        "Mas de $22,000"
     ]
 
     seleccion = StringVar(value="")
