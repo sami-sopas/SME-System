@@ -12,7 +12,9 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     ctk.CTkLabel(root, text="Preferencias adicionales", font=("Arial", 16, "bold")).pack(pady=10)
     ctk.CTkLabel(root, text=f"Uso: {tipo_uso} | Presupuesto: {presupuesto}", font=("Arial", 10, "italic")).pack(pady=5)
 
-    sistema_preferida = StringVar(value="Windows")
+    placeholder = "Selecciona una opción"
+
+    sistema_preferida = StringVar(value=placeholder)
     sistema = ["Windows", "MacOS"]
     ctk.CTkLabel(root, text="Sistema Operativo preferido:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
     ctk.CTkOptionMenu(

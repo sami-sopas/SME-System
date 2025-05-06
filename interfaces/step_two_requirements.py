@@ -54,7 +54,7 @@ def show_step_two(root, tipo_uso):
             ).pack(anchor="w", padx=30)
         return var
 
-    if tipo_uso == "Oficina / tareas generales":
+    if tipo_uso == "Oficina / Ofimitica / Contaduria":
         respuestas['suite'] = crear_opciones("¿Qué suite de oficina usas?", ["Microsoft Office", "Google Docs", "LibreOffice", "Otra"])
         respuestas['multitarea'] = crear_opciones("¿Realizas multitarea frecuente?", ["si", "no"])
     elif tipo_uso == "Diseno grafico / edicion":
@@ -70,7 +70,7 @@ def show_step_two(root, tipo_uso):
     elif tipo_uso == "Portabilidad / uso casual":
         respuestas['peso'] = crear_opciones("¿Hay un peso máximo para el equipo?", ["No importa", "Menos de 1.5kg", "Menos de 2kg"])
         respuestas['bateria'] = crear_opciones("¿Necesitas buena duración de batería?", ["Si", "No"])
-    elif tipo_uso == "Ingenieria / CAD / simulacion":
+    elif tipo_uso == "Modelado / CAD / Simulacion":
         respuestas['software'] = crear_opciones("¿Qué software CAD/simulación usas?", ["AutoCAD", "SolidWorks", "MATLAB", "Otro"])
         respuestas['gpu_cad'] = crear_opciones("¿Requieres GPU profesional (ej. Quadro)?", ["Si", "No"])
 
