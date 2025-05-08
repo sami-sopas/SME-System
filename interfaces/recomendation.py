@@ -14,8 +14,10 @@ def show_final_recommendation(root, datos):
     tipo_uso = datos["tipo_uso"]
     
     # Asignar 'dedicada' a la GPU si el tipo de uso es "Gaming / juegos"
-    if tipo_uso == "Gaming / juegos" or tipo_uso == "Ingenieria / CAD / simulacion":
+    if tipo_uso == "Gaming / juegos" or tipo_uso == "Modelado / CAD / Simulacion":
         gpu = "dedicada"
+    elif tipo_uso == "Programacion / desarrollo" or tipo_uso == "Diseno grafico / edicion" or tipo_uso == "Oficina / Ofimática / Contaduria":
+        gpu = "integrada"
     else:
         # Si no existe 'gpu' en los datos, asignar 'no' como valor por defecto
         gpu = datos.get("gpu", "no")
@@ -25,7 +27,7 @@ def show_final_recommendation(root, datos):
     
     presupuesto = datos["presupuesto"]
     sistema = datos["sistema"]
-
+    print(tipo_uso, gpu, portabilidad, presupuesto, sistema)
     # Consultar la recomendación con los parámetros obtenidos
     resultados = list(prolog.query(
         f'recomendar("{tipo_uso}", "{gpu}", "{portabilidad}", "{presupuesto}", "{sistema}", Recomendacion)'

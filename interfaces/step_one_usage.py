@@ -14,9 +14,9 @@ def show_step_one(root):
     ctk.CTkLabel(root, text="¿Para qué usarás la computadora?", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=20)
 
     opciones = [
-        "Oficina / Ofimitica / Contaduria",
+        "Oficina / Ofimática / Contaduria",
         "Diseno grafico / edicion",
-        "Programación / desarrollo",
+        "Programacion / desarrollo",
         "Gaming / juegos",
         "Portabilidad / uso casual",
         "Modelado / CAD / Simulacion"
