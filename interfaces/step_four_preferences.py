@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 import os
-from tkinter import StringVar, BooleanVar
+from tkinter import StringVar, BooleanVar, messagebox
 from interfaces.recomendation import show_final_recommendation
 
 def show_step_four(root, tipo_uso, requerimientos, presupuesto):
@@ -15,7 +15,7 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     placeholder = "Selecciona una opción"
 
     sistema_preferida = StringVar(value=placeholder)
-    sistema = ["Windows", "MacOS"]
+    sistema = ["Windows", "MacOS", "Linux", "Cualquiera"]
     ctk.CTkLabel(root, text="Sistema Operativo preferido:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
     ctk.CTkOptionMenu(
         root, variable=sistema_preferida, values=sistema, 
@@ -29,13 +29,20 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
         width=200
         ).pack(anchor="w", padx=30)
 
-    portatil = BooleanVar()
-    buena_bateria = BooleanVar()
+    portatil = BooleanVar(value=False)
+    buena_bateria = BooleanVar(value=False)
+
+    print("Portatil:", portatil.get(), "Buena bateria:", buena_bateria.get())
 
     ctk.CTkCheckBox(root, text="Debe ser liviana / portátil", variable=portatil, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
     ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
 
     def finalizar():
+        print("Portatil:", portatil.get(), "Buena bateria:", buena_bateria.get())
+        #Verifica si seleccionó una opción en el menú desplegable
+        if sistema_preferida.get() == placeholder:
+            messagebox.showwarning("Atención", "Por favor, selecciona un sistema operativo preferido.")
+            return
         # Combinar todos los datos en un diccionario final
         datos_finales = {
             "tipo_uso": tipo_uso,
