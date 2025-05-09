@@ -41,7 +41,7 @@ def show_final_recommendation(root, datos):
         gpu = "integrada"
     else:
         # Si no existe 'gpu' en los datos, asignar 'no' como valor por defecto
-        gpu = datos.get("gpu", "no")
+        gpu = "no"
     print("Portatil:", datos.get("portatil"))
     # Convertir 'portatil' a 'sí' o 'no' según el valor booleano
     portabilidad = "si" if datos.get("portatil") else "no"
@@ -49,6 +49,7 @@ def show_final_recommendation(root, datos):
     presupuesto = datos["presupuesto"]
     sistema = datos["sistema"]
     print(f"Tipo de uso: {tipo_uso}, GPU: {gpu}, Portabilidad: {portabilidad}, Presupuesto: {presupuesto}, Sistema: {sistema}")
+    print(f'recomendar("{tipo_uso}", "{gpu}", "{portabilidad}", "{presupuesto}", "{sistema}", Recomendacion)')
     # Consultar la recomendación con los parámetros obtenidos
     resultados = list(prolog.query(
         f'recomendar("{tipo_uso}", "{gpu}", "{portabilidad}", "{presupuesto}", "{sistema}", Recomendacion)'
