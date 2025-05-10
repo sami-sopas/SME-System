@@ -15,11 +15,11 @@ def show_step_one(root):
 
     opciones = [
         "Oficina / Ofimática / Contaduria",
-        "Diseno grafico / edicion",
-        "Programacion / desarrollo",
-        "Gaming / juegos",
-        "Portabilidad / uso casual",
-        "Modelado / CAD / Simulacion"
+        "Diseño gráfico / Edición",
+        "Programación / Desarrollo",
+        "Gaming / Juegos",
+        "Portabilidad / Uso casual",
+        "Modelado / CAD / Simulación"
     ]
 
     #Variable de selección de opciones
