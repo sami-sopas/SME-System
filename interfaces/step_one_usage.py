@@ -1,43 +1,67 @@
-import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+import os
+from tkinter import StringVar, messagebox
 from interfaces.step_two_requirements import show_step_two
 
-def show_step_one():
-    fase1 = tk.Tk()
-    fase1.title("Fase 1 - Tipo de uso")
-    fase1.geometry("500x400")
-    fase1.resizable(False, False)
+#Pantalla de primera fase
+def show_step_one(root):
+    #Esto es para eliminar la ventana anterior
+    for widget in root.winfo_children():
+        widget.destroy()
 
-    tk.Label(fase1, text="¿Para qué usarás la computadora?", font=("Arial", 16, "bold")).pack(pady=20)
+    #Título y opciones de la ventana
+    ctk.CTkLabel(root, text="¿Para qué usarás la computadora?", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=20)
 
     opciones = [
-        "Oficina / tareas generales",
-        "Diseno grafico / edicion",
-        "Programación / desarrollo",
-        "Gaming / juegos",
-        "Portabilidad / uso casual",
-        "Ingenieria / CAD / simulacion"
+        "Oficina / Ofimática / Contaduria",
+        "Diseño gráfico / Edición",
+        "Programación / Desarrollo",
+        "Gaming / Juegos",
+        "Portabilidad / Uso casual",
+        "Modelado / CAD / Simulación"
     ]
 
-    seleccion = tk.StringVar(value="")
+    #Variable de selección de opciones
+    seleccion = StringVar(value="")
 
     for i, opcion in enumerate(opciones):
-        tk.Radiobutton(
-            fase1,
+        ctk.CTkRadioButton(
+            root,
             text=opcion,
             variable=seleccion,
             value=opcion,
-            font=("Arial", 12)
+            font=("Arial", 12),
+            fg_color="darkorange",
+            hover_color="orange"
         ).pack(anchor="w", padx=50)
 
+    #Función para manejar la l+ogica del botón de siguiente
     def siguiente():
         if seleccion.get():
             uso = seleccion.get()
             print(uso)
-            fase1.destroy()
-            show_step_two(uso)
+            show_step_two(root, uso)
         else:
-            tk.messagebox.showwarning("Atención", "Debes seleccionar una opción")
+            messagebox.showwarning("Atención", "Debes seleccionar una opción")
 
-    tk.Button(fase1, text="Siguiente", font=("Arial", 12), bg="blue", fg="white", command=siguiente).pack(pady=30)
+    #Imagen perrona para el botón
+    image_path = os.path.join("assets", "yanpol.png")
+    image = Image.open(image_path)
 
-    fase1.mainloop()
+    #Botón de siguiente
+    ctk.CTkButton(
+        master=root,
+        text="Siguiente",
+        font=ctk.CTkFont(size=14, weight="bold"),
+        fg_color="orange",
+        bg_color="transparent",
+        border_color="black",
+        hover_color="darkorange",
+        border_width=2,
+        text_color="black",
+        corner_radius=10,
+        width=200,
+        image=ctk.CTkImage(light_image=image),
+        command=siguiente
+    ).pack(pady=30)
