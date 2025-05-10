@@ -2,12 +2,16 @@ import customtkinter as ctk
 from PIL import Image
 import os
 from pyswip import Prolog
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 #Función para crear la vista final de recomendaciones
 def make_window(root, resultados):
     ctk.CTkLabel(root, text="Recomendación encontrada:", font=("Arial", 16)).pack(pady=10)
     for resultado in resultados:
-        recomendacion = resultado["Recomendacion"]
+        recomendacion_bytes = resultado["Recomendacion"]
+        recomendacion = recomendacion_bytes.decode("utf-8") if isinstance(recomendacion_bytes, bytes) else recomendacion_bytes
         ctk.CTkLabel(root, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
         print("Recomendacion: ", recomendacion)
 
@@ -19,7 +23,8 @@ def make_window_with_scroll(root, resultados):
 
     ctk.CTkLabel(scrollable_frame, text="Recomendaciones encontradas:", font=("Arial", 16)).pack(pady=10)
     for resultado in resultados:
-        recomendacion = resultado["Recomendacion"]
+        recomendacion_bytes = resultado["Recomendacion"]
+        recomendacion = recomendacion_bytes.decode("utf-8") if isinstance(recomendacion_bytes, bytes) else recomendacion_bytes
         ctk.CTkLabel(scrollable_frame, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
         print("Recomendacion: ", recomendacion)
 
