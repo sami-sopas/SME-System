@@ -15,7 +15,7 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     placeholder = "Selecciona una opción"
 
     sistema_preferida = StringVar(value=placeholder)
-    sistema = ["Windows", "MacOS", "Linux", "Cualquiera"]
+    sistema = ["Windows", "MacOS", "Linux"]
     ctk.CTkLabel(root, text="Sistema Operativo preferido:", font=ctk.CTkFont(size=12)).pack(anchor="w", padx=30, pady=(15, 0))
     ctk.CTkOptionMenu(
         root, variable=sistema_preferida, values=sistema, 
@@ -35,7 +35,11 @@ def show_step_four(root, tipo_uso, requerimientos, presupuesto):
     print("Portatil:", portatil.get(), "Buena bateria:", buena_bateria.get())
 
     ctk.CTkCheckBox(root, text="Debe ser liviana / portátil", variable=portatil, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
-    ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange").pack(anchor="w", padx=30, pady=5)
+    ctk.CTkCheckBox(root, text="Buena duración de batería", variable=buena_bateria, font=ctk.CTkFont(size=12), fg_color="darkorange", hover_color="orange", state="disabled").pack(anchor="w", padx=30, pady=5)
+
+    #etiqueta para mantener la expectativa
+    aviso = ctk.CTkLabel(root, text="¡Próximamente!", font=ctk.CTkFont(size=12), fg_color="transparent", text_color="orange")
+    aviso.pack(anchor="w", padx=60, pady=5) 
 
     def finalizar():
         print("Portatil:", portatil.get(), "Buena bateria:", buena_bateria.get())
