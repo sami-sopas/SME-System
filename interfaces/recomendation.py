@@ -9,10 +9,10 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 #Función para crear la vista final de recomendaciones
 def make_window(root, resultados):
     ctk.CTkLabel(root, text="Recomendación encontrada:", font=("Arial", 16)).pack(pady=10)
-    for resultado in resultados:
+    for i, resultado in enumerate(resultados, start=1):
         recomendacion_bytes = resultado["Recomendacion"]
         recomendacion = recomendacion_bytes.decode("utf-8") if isinstance(recomendacion_bytes, bytes) else recomendacion_bytes
-        ctk.CTkLabel(root, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
+        ctk.CTkLabel(root, text=f"{i}. {recomendacion}", font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
         print("Recomendacion: ", recomendacion)
 
 #Función para crear la vista final de recomendaciones con scroll
@@ -22,10 +22,10 @@ def make_window_with_scroll(root, resultados):
     scrollable_frame.pack(padx=20, pady=10, fill="both", expand=True)
 
     ctk.CTkLabel(scrollable_frame, text="Recomendaciones encontradas:", font=("Arial", 16)).pack(pady=10)
-    for resultado in resultados:
+    for i, resultado in enumerate(resultados, start=1):
         recomendacion_bytes = resultado["Recomendacion"]
         recomendacion = recomendacion_bytes.decode("utf-8") if isinstance(recomendacion_bytes, bytes) else recomendacion_bytes
-        ctk.CTkLabel(scrollable_frame, text=recomendacion, font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
+        ctk.CTkLabel(scrollable_frame, text=f"{i}. {recomendacion}", font=("Arial", 14), wraplength=500, justify="center").pack(pady=10)
         print("Recomendacion: ", recomendacion)
 
 #Función para crear las recomendaciones finales
@@ -39,10 +39,10 @@ def show_final_recommendation(root, datos):
 
     tipo_uso = datos["tipo_uso"]
     
-    # Asignar 'dedicada' a la GPU si el tipo de uso es "Gaming / juegos"
-    if tipo_uso == "Gaming / juegos" or tipo_uso == "Modelado / CAD / Simulacion":
+    # Asignar 'dedicada' a la GPU si el tipo de uso es "Gaming / Juegos"
+    if tipo_uso == "Gaming / Juegos" or tipo_uso == "Modelado / CAD / Simulación":
         gpu = "dedicada"
-    elif tipo_uso == "Programacion / desarrollo" or tipo_uso == "Diseno grafico / edicion" or tipo_uso == "Oficina / Ofimática / Contaduria":
+    elif tipo_uso == "Programación / Desarrollo" or tipo_uso == "Diseño gráfico / Edición" or tipo_uso == "Oficina / Ofimática / Contaduria":
         gpu = "integrada"
     else:
         # Si no existe 'gpu' en los datos, asignar 'no' como valor por defecto
